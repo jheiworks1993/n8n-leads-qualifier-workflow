@@ -11,10 +11,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        0,
-        -48
+        -5184,
+        736
       ],
-      "id": "7f8bd750-78d7-49f3-91c5-5809a9795003",
+      "id": "4b81687d-904a-4c5e-b542-abecd38c83a8",
       "name": "Webhook",
       "webhookId": "3bf598ca-23e2-4869-ba4a-c44f85dab7fa"
     },
@@ -59,10 +59,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        224,
-        -48
+        -4752,
+        736
       ],
-      "id": "818b938c-d235-4d83-8bea-4d10daad7cbf",
+      "id": "557d6e1b-4e2e-4060-a6e3-59f400261755",
       "name": "leadsData"
     },
     {
@@ -100,10 +100,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1344,
-        -240
+        -3632,
+        544
       ],
-      "id": "4acc78ba-80ac-4905-9dc6-82741226cc7b",
+      "id": "dd19dad4-3153-4a0c-98e5-38adf6b6a3eb",
       "name": "classificationTag"
     },
     {
@@ -117,10 +117,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        1792,
-        -240
+        -3184,
+        544
       ],
-      "id": "f0fd79a5-6066-4600-a433-b9395ca32101",
+      "id": "ba05fb08-2277-4d66-a031-99a7d338d6bb",
       "name": "webhookRespondHot"
     },
     {
@@ -170,10 +170,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1120,
-        -48
+        -3856,
+        736
       ],
-      "id": "a3fe8b6c-eec2-4708-9a72-c408361e0245",
+      "id": "00a9eb10-5641-43b5-9728-6ae730b85c53",
       "name": "errorTag"
     },
     {
@@ -276,14 +276,14 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1344,
-        -48
+        -3632,
+        736
       ],
-      "id": "3f238495-3883-4197-83a1-61b15f81228f",
+      "id": "2db1df11-2a48-4335-bf71-92cff22b7404",
       "name": "errorList",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "hSqCee4AFO6uDKKG",
+          "id": "0UPTjEQHP4hcjtG4",
           "name": "Google Sheets account"
         }
       }
@@ -301,15 +301,15 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        2256,
-        -320
+        -2720,
+        464
       ],
-      "id": "1138f3bc-4edb-4de8-a5ed-d98691314a64",
+      "id": "2a71e6d5-b437-49cc-aa73-ab4f84e3cfa1",
       "name": "hotLeadsEmail",
       "webhookId": "a6a7d8a7-10c5-41a1-8fa3-025b8140d17e",
       "credentials": {
         "gmailOAuth2": {
-          "id": "uYHgkYYiTDWHDmae",
+          "id": "jCsxNnv8O6jeKkVP",
           "name": "Gmail account"
         }
       }
@@ -321,10 +321,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1120,
-        -240
+        -3856,
+        544
       ],
-      "id": "73e8adb6-8ad3-47ed-8d1b-ae12e8a8dde6",
+      "id": "558c2d2c-8118-435d-932c-3455d4d5eb46",
       "name": "responseParser"
     },
     {
@@ -340,10 +340,10 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.3,
       "position": [
-        0,
-        272
+        -5184,
+        1056
       ],
-      "id": "6f6f1840-44ae-4dd1-bb7c-ff1d3b16af57",
+      "id": "c9992b88-5f80-4bbd-982f-5dbda3988eb7",
       "name": "Schedule Trigger"
     },
     {
@@ -385,10 +385,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        448,
-        272
+        -4736,
+        1056
       ],
-      "id": "7e61c450-1cc5-47a8-b164-a7a352d9c6ac",
+      "id": "18164785-0278-4cc6-9c28-db216e3c654b",
       "name": "If"
     },
     {
@@ -398,10 +398,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        672,
-        272
+        -4512,
+        1056
       ],
-      "id": "b7000b6c-6da3-4f67-9efa-599070a02b87",
+      "id": "a74f40fc-e604-4836-bbfd-6c98759e70c8",
       "name": "Code in JavaScript"
     },
     {
@@ -417,15 +417,15 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        896,
-        272
+        -4288,
+        1056
       ],
-      "id": "e743626b-9f51-42cf-bb85-4430c7f24f84",
+      "id": "cb9ca758-2cdd-458c-8109-b426159d6a9a",
       "name": "followUpReminder",
       "webhookId": "0b711ae3-b66e-4468-bf9e-8ff9120bb722",
       "credentials": {
         "gmailOAuth2": {
-          "id": "uYHgkYYiTDWHDmae",
+          "id": "jCsxNnv8O6jeKkVP",
           "name": "Gmail account"
         }
       }
@@ -580,14 +580,14 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1568,
-        -240
+        -3408,
+        544
       ],
-      "id": "a9b3fc2d-5db1-4985-a08d-45144d7e529b",
+      "id": "5cf0ebb4-5582-475f-8e97-9a83893304a2",
       "name": "leadsList",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "hSqCee4AFO6uDKKG",
+          "id": "0UPTjEQHP4hcjtG4",
           "name": "Google Sheets account"
         }
       }
@@ -621,15 +621,15 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        448,
-        -48
+        -4528,
+        736
       ],
-      "id": "13fc6384-c5dc-417b-aab8-4ac3cfda3240",
+      "id": "c0c8b4ae-c862-445b-b1ab-56a5e11ff6d9",
       "name": "emailLookUp",
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "hSqCee4AFO6uDKKG",
+          "id": "0UPTjEQHP4hcjtG4",
           "name": "Google Sheets account"
         }
       }
@@ -643,10 +643,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        896,
-        48
+        -4080,
+        832
       ],
-      "id": "79c62204-6402-4aea-86fc-8e54cf93f774",
+      "id": "7ff5fa6e-bd7e-4f65-87f8-259b0b0f04d1",
       "name": "Respond to Webhook"
     },
     {
@@ -677,15 +677,15 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        224,
-        272
+        -4960,
+        1056
       ],
-      "id": "b93ce747-7708-4b7c-8437-f5bbc8c7bb3a",
+      "id": "46c73bc8-b97e-4e40-bf10-a7b34d910093",
       "name": "checkLeadsList",
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "hSqCee4AFO6uDKKG",
+          "id": "0UPTjEQHP4hcjtG4",
           "name": "Google Sheets account"
         }
       }
@@ -729,10 +729,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2000,
-        -240
+        -2976,
+        544
       ],
-      "id": "847cb157-dc63-4e15-bfa1-5acb6a84b72f",
+      "id": "44e402d6-a81f-480d-af69-a1b5de5d9450",
       "name": "ifHotLead",
       "alwaysOutputData": false
     },
@@ -764,10 +764,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        672,
-        -48
+        -4304,
+        736
       ],
-      "id": "b7414e36-8e6d-4d2b-a525-a55ff10a79d4",
+      "id": "28eed268-d0d2-4c4a-b447-ac726193b55f",
       "name": "ifNoDuplicate",
       "alwaysOutputData": false
     },
@@ -779,25 +779,38 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"You are a lead qualifier. Check the lead details and from it, classify if it is HOT, WARM, or COLD. Let's say 0% - 40% confidence level is cold, around 41% - 79% is warm, then 80% - 100% is hot and i want the confidence level as whole number. Also, give reason for the confidence value you gave (i.e. High budget, urgency signals, specific pain point), and suggested action (i.e. Call within 2 hours). I want your response to be a JSON data containing these details seperated via fields so I can easily parse each one seperately. Use the following fields:\\n\\nclassification\\nconfidence_level\\nreason_for_confidence\\nsuggested_action\\n\\nName{{ $('leadsData').item.json.body.name }}: \\nCompany: {{ $('leadsData').item.json.body.company }}\\nBudget: {{ $('leadsData').item.json.body.budget }}\\nMessage: {{ $('leadsData').item.json.body.message }}\"\n        }\n      ]\n    }\n  ]\n}",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"You are a lead qualifier. Classify the lead as HOT, WARM, or COLD.\\n\\n0-40% confidence = COLD, 41-79% = WARM, 80-100% = HOT. Confidence level as a whole number.\\n\\nProvide reason_for_confidence (e.g. High budget, urgency signals) and suggested_action (e.g. Call within 2 hours).\\n\\nName: {{ $('leadsData').item.json.body.name }}\\nCompany: {{ $('leadsData').item.json.body.company }}\\nBudget: {{ $('leadsData').item.json.body.budget }}\\nMessage: {{ $('leadsData').item.json.body.message }}\"\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"responseMimeType\": \"application/json\",\n    \"responseSchema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"classification\": { \"type\": \"string\" },\n        \"confidence_level\": { \"type\": \"integer\" },\n        \"reason_for_confidence\": { \"type\": \"string\" },\n        \"suggested_action\": { \"type\": \"string\" }\n      },\n      \"required\": [\"classification\", \"confidence_level\", \"reason_for_confidence\", \"suggested_action\"]\n    }\n  }\n}\n",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        896,
-        -144
+        -4080,
+        640
       ],
-      "id": "7417a422-92d7-4fa0-b88f-712d1286de86",
+      "id": "6f6a548a-3820-4f2b-b7ca-b7fb7fa59f4d",
       "name": "httpQualifyLeadAI",
       "retryOnFail": true,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "QyH5QSWV79aiOpLZ",
+          "id": "IMGgN0ZbJKQQfZeQ",
           "name": "Header Auth account"
         }
       },
       "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fields = $input.first().json.body.data.fields;\nconst get = (label) => fields.find(f => f.label.toLowerCase() === label.toLowerCase())?.value ?? '';\n\nreturn [{\n  json: {\n    body: {\n      name:    get('Full name'),\n      email:   get('Email'),\n      company: get('Company name'),\n      budget:  get('Monthly budget'),\n      message: get('What do you need help with?')\n    }\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -4976,
+        736
+      ],
+      "id": "e4d7885b-b818-4187-9ee2-0a49a70e2c0b",
+      "name": "tallyParser"
     }
   ],
   "pinData": {},
@@ -806,7 +819,7 @@
       "main": [
         [
           {
-            "node": "leadsData",
+            "node": "tallyParser",
             "type": "main",
             "index": 0
           }
@@ -980,6 +993,17 @@
           }
         ]
       ]
+    },
+    "tallyParser": {
+      "main": [
+        [
+          {
+            "node": "leadsData",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
@@ -988,12 +1012,12 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "4afb0368-ed16-4dca-83c3-3168f5a7c8ea",
+  "versionId": "8509d538-7aee-4861-a8a0-7e08aa3548a3",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "cd14fc28c6cf95d1ff0438ef748af262859a97a27cf423f8dda355a1457fbb2e"
+    "instanceId": "16579d418ba9c8c4a55438471cfc853b411cf9037cc2821c644f03f450159e5a"
   },
   "nodeGroups": [],
-  "id": "E32nly1dkK5tsPyI",
+  "id": "yrBrvuh0ZxCnEJsr",
   "tags": []
 }
