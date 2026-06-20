@@ -1,0 +1,999 @@
+{
+  "name": "AI Leads Qualifier Demo",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-qualifier",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        -48
+      ],
+      "id": "7f8bd750-78d7-49f3-91c5-5809a9795003",
+      "name": "Webhook",
+      "webhookId": "3bf598ca-23e2-4869-ba4a-c44f85dab7fa"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1a2806a0-aa53-433b-82fc-106b314ed345",
+              "name": "body.name",
+              "value": "={{ $json.body.name }}",
+              "type": "string"
+            },
+            {
+              "id": "66a266ff-aaf7-41f6-81ba-7f7f9fcb13c0",
+              "name": "body.email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "0693dea6-8d98-4d15-8ac6-3feaa4736788",
+              "name": "body.company",
+              "value": "={{ $json.body.company }}",
+              "type": "string"
+            },
+            {
+              "id": "7473a6e0-aa07-432c-bee5-27a7c816a252",
+              "name": "body.budget",
+              "value": "={{ $json.body.budget }}",
+              "type": "string"
+            },
+            {
+              "id": "4a66b92d-c9df-4fca-b4b7-121d424530a0",
+              "name": "body.message",
+              "value": "={{ $json.body.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        -48
+      ],
+      "id": "818b938c-d235-4d83-8bea-4d10daad7cbf",
+      "name": "leadsData"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8c554e95-7129-4468-a82c-256007f6d0d5",
+              "name": "classification",
+              "value": "={{ $json.classification }}",
+              "type": "string"
+            },
+            {
+              "id": "7829a31f-9331-420b-bbf1-1edff69401a3",
+              "name": "confidence_level",
+              "value": "={{ $json.confidence_level }}",
+              "type": "number"
+            },
+            {
+              "id": "0a923ad9-363b-4bc5-ad8b-9832b032826c",
+              "name": "reason_for_confidence",
+              "value": "={{ $json.reason_for_confidence }}",
+              "type": "string"
+            },
+            {
+              "id": "0a14f493-7417-4e9c-8c35-4cf824c2cc5d",
+              "name": "suggested_action",
+              "value": "={{ $json.suggested_action }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1344,
+        -240
+      ],
+      "id": "4acc78ba-80ac-4905-9dc6-82741226cc7b",
+      "name": "classificationTag"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"classification\": {{ JSON.stringify($json.Classification) }},\n  \"confidence_level\": {{ $json['Confidence level'] }},\n  \"reason_for_confidence\": {{ JSON.stringify($json['Reason for confidence']) }},\n  \"suggested_action\": {{ JSON.stringify($json['Suggested action']) }}\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1792,
+        -240
+      ],
+      "id": "f0fd79a5-6066-4600-a433-b9395ca32101",
+      "name": "webhookRespondHot"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "23b3af85-0162-4b59-ab42-e8cff3e0a06b",
+              "name": "timestamp",
+              "value": "={{ $now.format('yyyy-MMMM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "b2cd3c77-4f30-423e-8bd7-e5eeea8bbbce",
+              "name": "error.code",
+              "value": "={{ $json.error.code }}",
+              "type": "string"
+            },
+            {
+              "id": "78b46dc6-abc3-4b18-b221-5e8b1ebd7d20",
+              "name": "error.status",
+              "value": "={{ $json.error.status }}",
+              "type": "number"
+            },
+            {
+              "id": "d73046be-4010-4ac6-b321-a9b81f612cf3",
+              "name": "error.message",
+              "value": "={{ $json.error.message }}",
+              "type": "string"
+            },
+            {
+              "id": "0a1cd5d2-27d2-4e51-801f-c86650d6fa88",
+              "name": "error.name",
+              "value": "={{ $json.error.name }}",
+              "type": "string"
+            },
+            {
+              "id": "7ef851a2-38e0-4ecb-84fa-005e9ef0d0d2",
+              "name": "error.stack",
+              "value": "={{ $json.error.stack }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1120,
+        -48
+      ],
+      "id": "a3fe8b6c-eec2-4708-9a72-c408361e0245",
+      "name": "errorTag"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA",
+          "mode": "list",
+          "cachedResultName": "Lead Qualifier Result",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1700258193,
+          "mode": "list",
+          "cachedResultName": "ERRORS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA/edit#gid=1700258193"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $('errorTag').item.json.timestamp }}",
+            "Error code": "={{ $('errorTag').item.json.error.code }}",
+            "Error Status": "={{ $('errorTag').item.json.error.status }}",
+            "Error message": "={{ $('errorTag').item.json.error.message }}",
+            "Error name": "={{ $('errorTag').item.json.error.name }}",
+            "Error details": "={{ $('errorTag').item.json.error.stack }}"
+          },
+          "matchingColumns": [
+            "Timestamp"
+          ],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Error code",
+              "displayName": "Error code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Error Status",
+              "displayName": "Error Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Error message",
+              "displayName": "Error message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Error name",
+              "displayName": "Error name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Error details",
+              "displayName": "Error details",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1344,
+        -48
+      ],
+      "id": "3f238495-3883-4197-83a1-61b15f81228f",
+      "name": "errorList",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "hSqCee4AFO6uDKKG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "jheiworks1993@gmail.com",
+        "subject": "=Potential HOT lead client: {{ $('webhookRespondHot').item.json['Name'] }}",
+        "emailType": "text",
+        "message": "=A potential client was spotted! Check the details below to find more details about them:\n\nReason for confidence:\n{{ $('webhookRespondHot').item.json['Reason for confidence'] }}\n\nSuggested action:\n{{ $('webhookRespondHot').item.json['Suggested action'] }}\n\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2256,
+        -320
+      ],
+      "id": "1138f3bc-4edb-4de8-a5ed-d98691314a64",
+      "name": "hotLeadsEmail",
+      "webhookId": "a6a7d8a7-10c5-41a1-8fa3-025b8140d17e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "uYHgkYYiTDWHDmae",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Target the exact nested path from the Gemini API payload\nconst rawText = $input.first().json.candidates[0].content.parts[0].text;\n\nif (!rawText) {\n    throw new Error(\"Could not find text in the Gemini response payload.\");\n}\n\n// 2. Clean out the markdown fences safely without using regex\nlet cleanJsonString = rawText.trim();\n\nif (cleanJsonString.startsWith(\"```json\")) {\n    cleanJsonString = cleanJsonString.slice(7); // Strip off ```json\n} else if (cleanJsonString.startsWith(\"```\")) {\n    cleanJsonString = cleanJsonString.slice(3); // Strip off baseline ```\n}\n\nif (cleanJsonString.endsWith(\"```\")) {\n    cleanJsonString = cleanJsonString.slice(0, -3); // Strip off trailing ```\n}\n\ncleanJsonString = cleanJsonString.trim();\n\n// 3. Parse it into a standard JavaScript object\nconst parsedData = JSON.parse(cleanJsonString);\n\n// 4. Return it cleanly for downstream nodes\nreturn [{ json: parsedData }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        -240
+      ],
+      "id": "73e8adb6-8ad3-47ed-8d1b-ae12e8a8dde6",
+      "name": "responseParser"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        272
+      ],
+      "id": "6f6f1840-44ae-4dd1-bb7c-ff1d3b16af57",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "25098fd8-a6ee-4656-acfa-1fbba489a0a7",
+              "leftValue": "={{ $json.Classification }}",
+              "rightValue": "=HOT",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "61faa49e-e012-48ed-a955-37c48386fec8",
+              "leftValue": "={{ $json.Contacted }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        448,
+        272
+      ],
+      "id": "7e61c450-1cc5-47a8-b164-a7a352d9c6ac",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Grab all the incoming lead items\nconst leads = $input.all().map(item => item.json);\n\n// 2. Filter to HOT leads only\nconst hotLeads = leads.filter(lead => \n  lead[\"Classification\"]?.toString().trim().toUpperCase() === \"HOT\"\n);\n\nconst leadCount = hotLeads.length;\n\n// 3. Build your clean array of JSON objects\nconst cleanedLeads = hotLeads.map(lead => {\n  return {\n    name: lead[\"Name\"],\n    company: lead[\"Company\"],\n    email: lead[\"Email address\"],\n    confidence_level: lead[\"Confidence level\"],\n    reason_for_confidence: lead[\"Reason for confidence\"],\n    suggested_action: lead[\"Suggested action\"]\n  };\n});\n\n// 4. Start building a single text summary for the email\nlet emailBody = `You have ${leadCount} new HOT leads to follow up with:`;\n\n// 5. Return EXACTLY ONE item containing BOTH the text and the clean list\nreturn [{ json: {\n  total_hot_leads: leadCount,\n  email_content: emailBody,\n  clean_lead_data: cleanedLeads\n} }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        272
+      ],
+      "id": "b7000b6c-6da3-4f67-9efa-599070a02b87",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "sendTo": "jheiworks1993@gmail.com",
+        "subject": "Hot leads for follow-up",
+        "emailType": "text",
+        "message": "=Hi there!\n\n{{ $json.email_content }}\n\n{{ $json.clean_lead_data.map(lead => `Name: ${lead.name}\\nCompany: ${lead.company}\\nConfidence level: ${lead.confidence_level}\\nReason for confidence: ${lead.reason_for_confidence}\\nSuggested action: ${lead.suggested_action}`).join('\\n\\n') }}\n\nKindly add 'yes' to the 'Contacted' section of each followed-up client inside the sheet to mark them as done.\n\n\nThank you!",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        896,
+        272
+      ],
+      "id": "e743626b-9f51-42cf-bb85-4430c7f24f84",
+      "name": "followUpReminder",
+      "webhookId": "0b711ae3-b66e-4468-bf9e-8ff9120bb722",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "uYHgkYYiTDWHDmae",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA",
+          "mode": "list",
+          "cachedResultName": "Lead Qualifier Result",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "LEADS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $now.format('yyyy-MM-dd') }}",
+            "Name": "={{ $('leadsData').item.json.body.name }}",
+            "Email address": "={{ $('leadsData').item.json.body.email }}",
+            "Company": "={{ $('leadsData').item.json.body.company }}",
+            "Message": "={{ $('leadsData').item.json.body.message }}",
+            "Classification": "={{ $json.classification }}",
+            "Budget(monthly)": "={{ $('leadsData').item.json.body.budget }}",
+            "Contacted": "=",
+            "Reason for confidence": "={{ $json.reason_for_confidence }}",
+            "Suggested action": "={{ $json.suggested_action }}",
+            "Confidence level": "={{ $json.confidence_level }}"
+          },
+          "matchingColumns": [
+            "Classification"
+          ],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email address",
+              "displayName": "Email address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Budget(monthly)",
+              "displayName": "Budget(monthly)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Classification",
+              "displayName": "Classification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Contacted",
+              "displayName": "Contacted",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Confidence level",
+              "displayName": "Confidence level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reason for confidence",
+              "displayName": "Reason for confidence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Suggested action",
+              "displayName": "Suggested action",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1568,
+        -240
+      ],
+      "id": "a9b3fc2d-5db1-4985-a08d-45144d7e529b",
+      "name": "leadsList",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "hSqCee4AFO6uDKKG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA",
+          "mode": "list",
+          "cachedResultName": "Lead Qualifier Result",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "LEADS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Email address",
+              "lookupValue": "={{ $('leadsData').item.json.body.email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        -48
+      ],
+      "id": "13fc6384-c5dc-417b-aab8-4ac3cfda3240",
+      "name": "emailLookUp",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "hSqCee4AFO6uDKKG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": false,\n  \"description\": \"Potential duplicate. Similar email address found during data lookup.\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        896,
+        48
+      ],
+      "id": "79c62204-6402-4aea-86fc-8e54cf93f774",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA",
+          "mode": "list",
+          "cachedResultName": "Lead Qualifier Result",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "LEADS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1j3cpXcgSmX0FpxEbMs6xzTVTitVIJvDQua-rEXDt-iA/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Contacted"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        272
+      ],
+      "id": "b93ce747-7708-4b7c-8437-f5bbc8c7bb3a",
+      "name": "checkLeadsList",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "hSqCee4AFO6uDKKG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "26ac06ec-3e67-4932-ade4-7645a8c33d26",
+              "leftValue": "={{ $json.Classification }}",
+              "rightValue": "HOT",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "171b342f-3c92-48f0-bd67-39345e8f88c4",
+              "leftValue": "={{ $json.Classification }}",
+              "rightValue": "HOT",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2000,
+        -240
+      ],
+      "id": "847cb157-dc63-4e15-bfa1-5acb6a84b72f",
+      "name": "ifHotLead",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ebf0c1dc-3d33-4f43-b2ce-1f17a0168ed9",
+              "leftValue": "={{ $('emailLookUp').item.json.isEmpty() }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        672,
+        -48
+      ],
+      "id": "b7414e36-8e6d-4d2b-a525-a55ff10a79d4",
+      "name": "ifNoDuplicate",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"You are a lead qualifier. Check the lead details and from it, classify if it is HOT, WARM, or COLD. Let's say 0% - 40% confidence level is cold, around 41% - 79% is warm, then 80% - 100% is hot and i want the confidence level as whole number. Also, give reason for the confidence value you gave (i.e. High budget, urgency signals, specific pain point), and suggested action (i.e. Call within 2 hours). I want your response to be a JSON data containing these details seperated via fields so I can easily parse each one seperately. Use the following fields:\\n\\nclassification\\nconfidence_level\\nreason_for_confidence\\nsuggested_action\\n\\nName{{ $('leadsData').item.json.body.name }}: \\nCompany: {{ $('leadsData').item.json.body.company }}\\nBudget: {{ $('leadsData').item.json.body.budget }}\\nMessage: {{ $('leadsData').item.json.body.message }}\"\n        }\n      ]\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        896,
+        -144
+      ],
+      "id": "7417a422-92d7-4fa0-b88f-712d1286de86",
+      "name": "httpQualifyLeadAI",
+      "retryOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "QyH5QSWV79aiOpLZ",
+          "name": "Header Auth account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "leadsData",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "leadsData": {
+      "main": [
+        [
+          {
+            "node": "emailLookUp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "classificationTag": {
+      "main": [
+        [
+          {
+            "node": "leadsList",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "errorTag": {
+      "main": [
+        [
+          {
+            "node": "errorList",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhookRespondHot": {
+      "main": [
+        [
+          {
+            "node": "ifHotLead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "responseParser": {
+      "main": [
+        [
+          {
+            "node": "classificationTag",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "checkLeadsList",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "followUpReminder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "leadsList": {
+      "main": [
+        [
+          {
+            "node": "webhookRespondHot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "emailLookUp": {
+      "main": [
+        [
+          {
+            "node": "ifNoDuplicate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "checkLeadsList": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ifHotLead": {
+      "main": [
+        [
+          {
+            "node": "hotLeadsEmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ifNoDuplicate": {
+      "main": [
+        [
+          {
+            "node": "httpQualifyLeadAI",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "httpQualifyLeadAI": {
+      "main": [
+        [
+          {
+            "node": "responseParser",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "errorTag",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "4afb0368-ed16-4dca-83c3-3168f5a7c8ea",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cd14fc28c6cf95d1ff0438ef748af262859a97a27cf423f8dda355a1457fbb2e"
+  },
+  "nodeGroups": [],
+  "id": "E32nly1dkK5tsPyI",
+  "tags": []
+}
