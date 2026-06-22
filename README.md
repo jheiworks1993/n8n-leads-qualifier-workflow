@@ -172,7 +172,9 @@ See the [main repository README](../README.md) for full VPS, Docker, Nginx, and 
 
 ## Testing
 
-Test with a curl mimicking Tally's webhook format:
+Click **Listen for test event** on the Webhook node before running any curl.
+
+### HOT Lead (high budget, urgency, specific pain point)
 
 ```bash
 curl -X POST https://automation.jheilabs.com/webhook-test/lead-qualifier \
@@ -185,13 +187,49 @@ curl -X POST https://automation.jheilabs.com/webhook-test/lead-qualifier \
         { "label": "Email", "value": "juan@example.com" },
         { "label": "Company name", "value": "Acme Corp" },
         { "label": "Monthly budget", "value": "50000" },
-        { "label": "What do you need help with?", "value": "We need full CRM automation urgently. Board approved budget." }
+        { "label": "What do you need help with?", "value": "We are scaling rapidly and need full CRM automation, lead routing, and follow-up sequences. Board approved budget. Need this done in 2 weeks." }
       ]
     }
   }'
 ```
 
-Click **Listen for test event** on the Webhook node before running the curl.
+### WARM Lead (moderate budget, some interest but no urgency)
+
+```bash
+curl -X POST https://automation.jheilabs.com/webhook-test/lead-qualifier \
+  -H "Content-Type: application/json" \
+  -d '{
+    "eventType": "FORM_RESPONSE",
+    "data": {
+      "fields": [
+        { "label": "Full name", "value": "Maria Santos" },
+        { "label": "Email", "value": "maria@example.com" },
+        { "label": "Company name", "value": "Santos Trading" },
+        { "label": "Monthly budget", "value": "15000" },
+        { "label": "What do you need help with?", "value": "We are looking into automating our email follow-ups. Not urgent but would like to explore options in the next month or two." }
+      ]
+    }
+  }'
+```
+
+### COLD Lead (low budget, vague message, no urgency)
+
+```bash
+curl -X POST https://automation.jheilabs.com/webhook-test/lead-qualifier \
+  -H "Content-Type: application/json" \
+  -d '{
+    "eventType": "FORM_RESPONSE",
+    "data": {
+      "fields": [
+        { "label": "Full name", "value": "Pedro Reyes" },
+        { "label": "Email", "value": "pedro@example.com" },
+        { "label": "Company name", "value": "Reyes Sari-sari Store" },
+        { "label": "Monthly budget", "value": "500" },
+        { "label": "What do you need help with?", "value": "Just browsing. Heard about automation, not sure if we need it." }
+      ]
+    }
+  }'
+```
 
 ---
 
